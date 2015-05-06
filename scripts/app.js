@@ -1,3 +1,5 @@
+/* global requirejs */
+
 var r = requirejs.config({
   "context": "xNote",
   "baseUrl": "scripts",

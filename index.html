@@ -55,7 +55,7 @@
             <li class="x-menu-item-holder">
               <span class="icon-download"></span> 导出数据
             </li>
-            <li class="x-menu-item-holder">
+            <li class="x-menu-item-holder js-x-empty-db">
               <div class="x-menu-button-wrapper">
                 <span class="icon-delete"></span> 清空数据
               </div>
@@ -94,12 +94,6 @@
     </div>
   </div>
   <div id="x-dialog" class="x-dialog"></div>
-  <ul class="x-notification">
-    <li class="x-notification-actions">
-      <span class="icon-asc"></span>
-      <span class="icon-close"></span>
-    </li>
-  </ul>
   <div class="x-overlay"></div>
   <script data-main="scripts/app" src="scripts/lib/require-2.1.5.min.js"></script>
   <template id="x-dialog-template">
@@ -178,10 +172,6 @@
         <div class="x-content-operation-contanier">
           <a href="javascript:void(0)" title="最后修改日期">
             <span class="icon-clock"></span> {date}
-          </a>
-          <span>•</span>
-          <a href="javascript:void(0)" title="阅读次数">
-            <span class="icon-view"></span> {viewCount}
           </a>
           <span>•</span>
           <a href="javascript:void(0)" title="所属分类">

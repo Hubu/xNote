@@ -12,9 +12,9 @@ define([
   ],
   function($, x, Simditor, properties, Data, note) {
     'use strict';
-
+    
     $(function() {
-      var db = new x.indexedDB({
+      var db = new x.IndexedDB({
         name: 'xNoteDB',
         version: 1,
         defaultData: [{
@@ -179,7 +179,7 @@ define([
           $('.x-all-notes-board-container').toggleClass('x-show');
         });
 
-        $('.x-menu-item-holder:eq(4)').on('click', function(e) {
+        $('.js-x-empty-db').on('click', function(e) {
           $(this).find('.x-menu-button-wrapper').slideUp('fast');
         });
 

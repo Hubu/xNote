@@ -1,95 +1,87 @@
 define(['jquery', 'core'], function($, x) {
+
   'use strict';
 
-  function xNotification(element, options) {
+  var messagesQueue = [];
 
-    var it = this;
-    this.element = element;
-    this.$element = $(element);
-    this.$messageItems = this.$element.find('.x-notification-body');
+  var currentMessage = null;
 
+  function showMessageRecursive($container) {
+    currentMessage = null;
 
-    var defaultOptions = {
-      defaultMessageType: 'info',
-      notificationDuration: 3000,
-      enableShowAllButton: true,
-      enableCloseButton: true,
-      style: {
-        type: 'message', // 'message'|'dialog'
-        position: 'top', // 'top'|'bottom'|'topLeft'|'topRight'|'bottomLeft'|'bottomRight'
+    if (messagesQueue.length) {
+      currentMessage = messagesQueue.pop();
+
+      $container.append(currentMessage.tpl)
+        .find('.x-notification-item:eq(0)').slideUp(function() {
+          $(this).remove();
+        });
+
+      var timer = setTimeout(function() {
+        clearTimeout(timer);
+        showMessageRecursive($container);
+      }, currentMessage.duration);
+    } else {
+      $container.slideUp(function() {
+        $(this).find('li').remove();
+      });
+    }
+  }
+  
+  function Message(msg, options) {
+    var timestamp = '[' + new Date().toLocaleTimeString() + ']';
+    
+    this.options = $.extend({
+      tpl: '<li class="x-notification-item notification-' + (options.type || 'info') + '-type">' + timestamp + ' ' + msg + '</li>',
+      sticky: false,
+      duration: 3000
+    }, options);
+
+    this.show = function($container) {
+      messagesQueue.push(this.options);
+
+      if (!currentMessage) {
+        currentMessage = messagesQueue.pop();
+        if (currentMessage) {
+          $container.append(currentMessage.tpl).slideDown();
+          var timer = setTimeout(function() {
+            clearTimeout(timer);
+            showMessageRecursive($container);
+          }, currentMessage.duration);
+        } else {
+          $container.slideUp();
+        }
       }
     };
 
-    this.init($.extend(true, {}, defaultOptions));
   }
 
-  xNotification.prototype = {
-    /**
-     * Widgeg initialize
-     * @param  {options} options
-     */
-    init: function(options) {
-      this.options = options;
+  function getMessageContainer() {
+    var $el = $('body > ul.x-notification');
 
-    },
+    if (!$el.size()) {
+      $el = $('' +
+          '<ul class="x-notification" style="display: none;">' +
+          '<div class="x-notification-actions">' +
+          '<span class="icon-asc js-x-expand"></span>' +
+          '<span class="icon-close js-x-close"></span>' +
+          '</div>' +
+          '</ul>')
+        .off('click.x').on('click.x', '.js-x-expand', function() {
+          console.log('expand');
+        }).on('click.x', '.js-x-close', function() {
+          console.log('close');
+        }).appendTo('body');
+    }
 
-    /**
-     * Show message
-     * @param  {String} message message content to display
-     * @param  {String} type    message type
-     */
-    show: function(message, type, callback) {
-      if ('message' === this.options.style.type) {
-        this.showMessage(message, type, callback);
-      } else if ('dialog' === this.options.style.type) {
-        this.showDialog(message, type, callback);
-      }
-    },
+    return $el;
+  }
 
-    /**
-     * [showMessage description]
-     * @param  {[type]}   message  [description]
-     * @param  {[type]}   type     [description]
-     * @param  {Function} callback [description]
-     * @return {[type]}            [description]
-     */
-    showMessage: function(message, type, callback) {
-      var timestamp = '[' + new Date().toLocaleTimeString() + ']';
-      var list = x.widget.xNotification.messageItemList;
-      list.push('<li class="x-notification-body notification-' + (type || this.options.defaultMessageType) + '-type">' + timestamp + ' ' + message + '</li>');
-
-      if (!this.$element.hasClass('x-showing')) {
-        this.$element.addClass('x-showing');
-
-        this.$element.append(list.pop()).slideDown();
-
-        var interval = setInterval(function() {
-          if (!list.length) {
-            clearInterval(interval);
-            this.$element.removeClass('x-showing').slideUp(function() {
-              $('.x-notification-body').remove();
-            });
-          } else {
-            this.$element.append(list.pop());
-            $('.x-notification-body:eq(0)').slideUp(function() {
-              $(this).remove();
-            });
-          }
-        }.bind(this), this.options.notificationDuration || 3000);
-      }
-    },
-
-    /**
-     * [showDialog description]
-     * @param  {[type]}   message  [description]
-     * @param  {[type]}   type     [description]
-     * @param  {Function} callback [description]
-     * @return {[type]}            [description]
-     */
-    showDialog: function(message, type, callback) {}
+  var notify = function(msg, options) {
+    return new Message(msg, options || {}).show(getMessageContainer());
   };
 
-  x.extend$fn(xNotification);
-
-  return x;
+  return x.extend({
+    notify: notify
+  });
 });

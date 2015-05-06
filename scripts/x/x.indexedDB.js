@@ -8,7 +8,14 @@ define([
   'use strict';
 
   var db, indexedDB, IDBTransaction, IDBKeyRange;
-  var notification = $('.x-notification').xNotification();
+  
+  var notification = {
+    show: function(message, type) {
+      return x.notify(message, {
+        type: type
+      });
+    }
+  };
 
   /**
    * print message to browser console
@@ -272,20 +279,20 @@ define([
       /**
        * update ObjectStore
        * @param  {Object} filter
-       *         eg:{
-       *             target: String, // osName
-       *             key: String, // filter key
-       *             value: String|Number, // filter key value
-       *             isID: Boolean, // does the key is the key field of os, default is true
-       *             isBatch: Boolean // doese the condition unique, default is false
-       *         }
+       *   eg:{
+       *     target: String, // osName
+       *     key: String, // filter key
+       *     value: String|Number, // filter key value
+       *     isID: Boolean, // does the key is the key field of os, default is true
+       *     isBatch: Boolean // doese the condition unique, default is false
+       *   }
        * @param  {Object} newDataConfig
-       *         eg:{
-       *             data: Object, // newData
-       *             update: Function // it has a default param hold the old data Object,
-       *                              // must return a new object represent
-       *                              // the new data object
-       *         }
+       *   eg:{
+       *     data: Object, // newData
+       *     update: Function // it has a default param hold the old data Object,
+       *                      // must return a new object represent
+       *                      // the new data object
+       *   }
        * @param {Function} callback callback for update successfully
        */
       this.update = function(filter, newDataConfig, callback) {
@@ -437,6 +444,6 @@ define([
   }
 
   return x.extend({
-    indexedDB: xIndexedDB
+    IndexedDB: xIndexedDB
   });
 });

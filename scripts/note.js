@@ -60,7 +60,6 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
                 title: data.title,
                 content: data.content,
                 date: new Date().toLocaleDateString(),
-                viewCount: 0,
                 category: data.category
               }
             }));

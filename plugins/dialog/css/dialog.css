@@ -43,7 +43,7 @@
     height: 50px;
     padding: 0 10px;
 
-    border-bottom: 1px dotted #03A9F4;
+    /*border-bottom: 1px dotted #03A9F4;*/
 }
 /* Content styles */
 .x-dialog-content
@@ -74,10 +74,15 @@
 
     border: none;
     border: 1px solid #03A9F4;
-    border-width: 1px 0;
+    border-width: 1px 0 0;
     background: #fff;
 
     flex: 1;
+}
+
+.x-dialog-buttons button:not(:first-child)
+{
+    border-left-width: 1px;
 }
 
 .x-dialog-buttons button:hover
