@@ -8,7 +8,7 @@ define([
   'use strict';
 
   var db, indexedDB, IDBTransaction, IDBKeyRange;
-  
+
   var notification = {
     show: function(message, type) {
       return x.notify(message, {
@@ -155,8 +155,9 @@ define([
        *
        */
       this.init = function(options, callback) {
-        var it = this,
-          options = $.extend(true, defaultOptions, options);
+        var it = this;
+
+        options = $.extend(true, defaultOptions, options);
 
         var request = indexedDB.open(options.name, options.version);
 

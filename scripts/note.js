@@ -29,12 +29,14 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
      */
     add: function(db, data) {
       var it = this;
+      
+      var date = new Date().toLocaleDateString();
 
       db.add('note', {
         title: data.title,
         category: data.category,
         content: data.content,
-        date: new Date().getTime()
+        date: date
       }, function(id) {
         if (id) {
           db.update({
@@ -59,7 +61,7 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
               templateData: {
                 title: data.title,
                 content: data.content,
-                date: new Date().toLocaleDateString(),
+                date: date,
                 category: data.category
               }
             }));

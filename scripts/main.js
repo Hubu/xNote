@@ -11,6 +11,7 @@ define([
     'notification'
   ],
   function($, x, Simditor, properties, Data, note) {
+    
     'use strict';
     
     $(function() {
@@ -31,6 +32,21 @@ define([
         db.add('user', {
           name: 'Joe',
           password: 'MyPassword'
+        });
+        
+        db.get({
+          target: 'note'
+        }, function(data) {
+          data.forEach(function(item) {
+            item.ico = Data.categories.filter(function(el) {
+              return el.value === item.category;
+            })[0].ico;
+            
+            $('.content ul').append(x.template.renderTemplate({
+              templateID: 'x-note-item-template',
+              templateData: item
+            }));
+          });
         });
 
         /**
