@@ -1,0 +1,58 @@
+@charset"utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: "Lato";
+    src: url('../fonts/Lato/Lato-Regular.ttf');
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+body {
+    font-size: 14px;
+    font-family: "Lato", "微软雅黑", Arial, Helvetica, sans-serif;
+    color: #000;
+    background: #FAFAFA;
+    background-image: url('../images/background.jpg');
+}
+input,
+select,
+option,
+textarea,
+button {
+    font-family: "Lato", "微软雅黑", Arial, Helvetica, sans-serif;
+    color: #000;
+    font-size: 15px;
+    background: #fff;
+    outline: none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+img,
+li {
+    list-style: none;
+    border: none;
+}
+.body {
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+.x-overlay{
+    z-index: 11;
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+}
+input:invalid
+{
+    border: 1px solid rgba(255, 0, 0, 0.3);
+}

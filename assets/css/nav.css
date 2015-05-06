@@ -1,0 +1,33 @@
+nav
+{
+    margin-top: 20px;
+
+    border: 1px dotted #03a9f4;
+    border-width: 1px 0;
+}
+nav ul,
+nav li
+{
+    display: inline-block;
+}
+li.x-category-item-filter
+{
+    color: #000;
+    border: 2px solid #03a9f4;
+    background: rgba(0, 0, 0, 0);
+}
+nav li
+{
+    padding: 1px 8px;
+
+    cursor: pointer;
+
+    color: #fff;
+    border: 2px solid rgba(0, 0, 0, 0);
+    background: #03a9f4;
+}
+.x-category-selector,
+.x-select-order
+{
+    font-weight: bold;
+}

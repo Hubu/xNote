@@ -1,0 +1,115 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/icomoon.eot?ucnp2j');
+	src:url('../fonts/icomoon/icomoon.eot?#iefixucnp2j') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.woff?ucnp2j') format('woff'),
+		url('../fonts/icomoon/icomoon.ttf?ucnp2j') format('truetype'),
+		url('../fonts/icomoon/icomoon.svg?ucnp2j#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-account:before {
+	content: "\e601";
+}
+.icon-delete:before {
+	content: "\e611";
+}
+.icon-pwd:before {
+	content: "\e616";
+}
+.icon-clock:before {
+	content: "\e602";
+}
+.icon-dislike:before {
+	content: "\e603";
+}
+.icon-like:before {
+	content: "\e604";
+}
+.icon-view:before {
+	content: "\e605";
+}
+.icon-warning:before {
+	content: "\e61b";
+}
+.icon-email:before {
+	content: "\e606";
+}
+.icon-data:before {
+	content: "\e608";
+}
+.icon-add:before {
+	content: "\e617";
+}
+.icon-remove:before {
+	content: "\e607";
+}
+.icon-category:before {
+	content: "\e609";
+}
+.icon-edit:before {
+	content: "\e60a";
+}
+.icon-create:before {
+	content: "\e60b";
+}
+.icon-download:before {
+	content: "\e60c";
+}
+.icon-upload:before {
+	content: "\e60d";
+}
+.icon-desc:before {
+	content: "\e60e";
+}
+.icon-asc:before {
+	content: "\e60f";
+}
+.icon-check:before {
+	content: "\e600";
+}
+.icon-close:before {
+	content: "\e610";
+}
+.icon-more:before {
+	content: "\e619";
+}
+.icon-menu:before {
+	content: "\e61a";
+}
+.icon-notifications:before {
+	content: "\e61c";
+}
+.icon-notifications-none:before {
+	content: "\e620";
+}
+.icon-notifications-off:before {
+	content: "\e61d";
+}
+.icon-check-box:before {
+	content: "\e612";
+}
+.icon-check-box-outline-blank:before {
+	content: "\e613";
+}
+.icon-star:before {
+	content: "\e614";
+}
+.icon-star-outline:before {
+	content: "\e615";
+}

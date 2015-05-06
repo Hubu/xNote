@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="assets/css/icon.css">
+  <link rel="stylesheet" href="assets/css/common.css">
+  <link rel="stylesheet" href="assets/css/header.css">
+  <link rel="stylesheet" href="assets/css/nav.css">
+  <link rel="stylesheet" href="assets/css/content.css">
+  <link rel="stylesheet" href="assets/css/category.css">
+  <link rel="stylesheet" href="plugins/dialog/css/dialog.css">
+  <link rel="stylesheet" href="plugins/simditor/assets/css/font-awesome.css">
+  <link rel="stylesheet" href="plugins/simditor/assets/css/simditor.css">
+  <link rel="stylesheet" type="text/css" href="plugins/notification/css/notification.css">
+  <link rel="shorcut icon" href="assets/images/favicon.ico">
+  <title>xNote</title>
+</head>
+
+<body>
+  <div class="body">
+    <header>
+      <ul>
+        <li class='x-menu-holder'>
+          <a href="javascript:void(0)" class="x-show-all-notes">
+              Yogoo(共100条笔记)
+          </a>
+        </li>
+        <li class='x-menu-holder'>
+          <a href="javascript:void(0)" class="x-note-addBtn">
+              新增
+              <span class="icon-add"></span>
+          </a>
+        </li>
+        <li class='x-menu-holder x-menu-searchbox-holder'>
+          <form>
+            <input class="search-input" type="search" placeholder="输入关键字 轻敲回车键发起搜索">
+          </form>
+        </li>
+        <li class='x-menu-holder x-menu-button-holder'>
+          <a href="javascript:void(0)">
+            <span class="icon-menu x-setting-button"></span>
+          </a>
+          <ul class='x-menu-item-list-holder'>
+            <li class="x-menu-item-holder">
+              <span class="icon-pwd"></span> 修改密码
+            </li>
+            <li class="x-menu-item-holder">
+              <span class="icon-remove"></span> 删除用户
+            </li>
+            <li class="x-menu-item-holder">
+              <sapn class="icon-upload"></sapn>
+              导入数据
+            </li>
+            <li class="x-menu-item-holder">
+              <span class="icon-download"></span> 导出数据
+            </li>
+            <li class="x-menu-item-holder">
+              <div class="x-menu-button-wrapper">
+                <span class="icon-delete"></span> 清空数据
+              </div>
+              <div class="x-confirmation-wrapper">
+                <button>取消</button>
+                <button class="positive">确认</button>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="x-all-notes-board-container">
+        <span class="icon-close x-notes-board-close"></span>
+        <div class="x-all-notes-board">
+          <ul class="x-notes-board-items-container"></ul>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <ul class="x-category-list">
+        <li class="x-category-selector">
+          分类
+        </li>
+      </ul>
+      <ul class="x-order-list">
+        <li class="x-select-order">
+          排序
+        </li>
+      </ul>
+    </nav>
+    <div class="content">
+      <ul>
+        <li class="null-content">没有可以显示的内容，你可以<a class="x-note-addBtn" href="javascript:void(0)">添加</a>新的笔记
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div id="x-dialog" class="x-dialog"></div>
+  <ul class="x-notification">
+    <li class="x-notification-actions">
+      <span class="icon-asc"></span>
+      <span class="icon-close"></span>
+    </li>
+  </ul>
+  <div class="x-overlay"></div>
+  <script data-main="scripts/app" src="scripts/lib/require-2.1.5.min.js"></script>
+  <template id="x-dialog-template">
+    <div class="x-dialog-title">
+      <h2>{title}</h2>
+    </div>
+    <div class="x-dialog-content"></div>
+    <div class="x-dialog-buttons">
+      <button class="x-dialog-negative-button">{negative}</button>
+      <button class="x-dialog-positive-button">{positive}</button>
+    </div>
+  </template>
+  <template id="x-category-template">
+    <div class="x-category">
+      <p class="category-editBtn-container">
+        <span class="icon-edit edit" title="Edit categories"></span>
+      </p>
+      <ul template="x-category-item-template" source="itemData">
+        <li class="x-category-addBtn">
+          <label title="新增分类">
+            <span class="icon-add"></span>
+          </label>
+        </li>
+      </ul>
+    </div>
+  </template>
+  <template id="x-category-item-template">
+    <li>
+      <input type="checkbox" value="{value}" id="{ID}" class="x-catetory-selection-trigger">
+      <label for="{ID}">
+        {text}
+        <span class="icon-add"></span>
+      </label>
+    </li>
+  </template>
+  <template id="x-category-add-form-template">
+    <form class="x-category-add-region">
+      <input type="text" placeholder="英文或者拼音形式的类别名称" title="请输入英文或者拼音形式的类别名称" required autofocus name="value">
+      <input type="text" placeholder="中文形式的类别描述" title="请输入中文形式的类别描述" required autofocus name="text">
+      <input type="color" placeholder="请选择分类颜色" title="请选择分类颜色" value="#03A9F4" name="color">
+      <button type="submit">
+        添加
+        <span class="icon-checkmark3"></span>
+      </button>
+      <button type="cancel">
+        取消
+        <span class="icon-cancel3"></span>
+      </button>
+    </form>
+  </template>
+  <template id="x-note-board-item-template">
+    <li class="x-notes-board-item" data-category="{category}">
+      <img src="{ico}" alt="{category}">
+      <span class="x-note-count">{count}</span>
+    </li>
+  </template>
+  <template id="x-content-editor-template">
+    <form class="x-content-title-category-form">
+      <input type="text" class="x-content-title-input" placeholder="请输入标题" autofocus required>
+      <input type="text" class="x-content-category-input" placeholder="请输入/选择分类" required>
+    </form>
+    <textarea id="simditor"></textarea>
+  </template>
+  <template id="x-note-item-template">
+    <li class="x-content-item">
+      <div class="float-left">
+        <img src="assets/images/icons/android.png" title="安卓设备">
+      </div>
+      <div class="float-right">
+        <section class="x-content-container">
+          <h3 class="x-content-title">
+                        {title}
+                    </h3>
+          <p class="x-content">{content}</p>
+        </section>
+        <div class="x-content-operation-contanier">
+          <a href="javascript:void(0)" title="最后修改日期">
+            <span class="icon-clock"></span> {date}
+          </a>
+          <span>•</span>
+          <a href="javascript:void(0)" title="阅读次数">
+            <span class="icon-view"></span> {viewCount}
+          </a>
+          <span>•</span>
+          <a href="javascript:void(0)" title="所属分类">
+            <span class="icon-category"></span> {category}
+          </a>
+          <span>•</span>
+          <a href="javascript:void(0)">
+            <span class="icon-edit"></span> 编辑
+          </a>
+          <a href="javascript:void(0)">
+            <span class="icon-delete"></span> 删除
+          </a>
+        </div>
+      </div>
+    </li>
+  </template>
+</body>
+
+</html>
