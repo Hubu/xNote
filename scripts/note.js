@@ -55,14 +55,15 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
               return data;
             }
           }, function(id) {
-            $('li.null-content').remove();
+            $('li.null-content:not(.hide)').addClass('hide');
             $('.content ul').append(x.template.renderTemplate({
               templateID: 'x-note-item-template',
               templateData: {
                 title: data.title,
                 content: data.content,
                 date: date,
-                category: data.category
+                category: data.category,
+                ico: it.getCategoryIcon(data.category)
               }
             }));
             if (id) {
@@ -74,6 +75,12 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
           });
         }
       });
+    },
+
+    getCategoryIcon: function(category) {
+      return Data.categories.filter(function(el) {
+        return el.value === category;
+      })[0].ico;
     },
 
     /**
@@ -121,6 +128,50 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
           }]
         }, this)).find('form').hide().show('fast');
       }
+    },
+
+    refresh: function(db) {
+      var it = this;
+
+      db.get({
+        target: 'note'
+      }, function(data) {
+        if (data.length) {
+          $('li.null-content').addClass('hide');
+          data.forEach(function(item) {
+            item.ico = it.getCategoryIcon(item.category);
+            
+            $('.content ul').append(x.template.renderTemplate({
+              templateID: 'x-note-item-template',
+              templateData: item
+            }));
+          });
+        } else {
+          $('li.null-content').removeClass('hide');
+        }
+      });
+    },
+
+    formatCategoryData: function(data) {
+      var it = this;
+
+      var categories = {};
+
+      data.forEach(function(item) {
+        categories[item.category] = categories[item.category] || {
+          ico: it.getCategoryIcon(item.category),
+          count: 0,
+          category: item.category
+        };
+
+        categories[item.category].count++;
+      });
+
+      var d = [];
+      for(var key in categories){
+        d.push(categories[key]);
+      }
+      return d;
     }
   };
 });

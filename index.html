@@ -22,12 +22,12 @@
     <header>
       <ul>
         <li class='x-menu-holder'>
-          <a href="javascript:void(0)" class="x-show-all-notes">
+          <a href="javascript:void 0;" class="x-show-all-notes">
               Yogoo(共100条笔记)
           </a>
         </li>
         <li class='x-menu-holder'>
-          <a href="javascript:void(0)" class="x-note-addBtn">
+          <a href="javascript:void 0;" class="x-note-addBtn">
               新增
               <span class="icon-add"></span>
           </a>
@@ -38,7 +38,7 @@
           </form>
         </li>
         <li class='x-menu-holder x-menu-button-holder'>
-          <a href="javascript:void(0)">
+          <a href="javascript:void 0;">
             <span class="icon-menu x-setting-button"></span>
           </a>
           <ul class='x-menu-item-list-holder'>
@@ -50,14 +50,14 @@
             </li>
             <li class="x-menu-item-holder">
               <sapn class="icon-upload"></sapn>
-              导入数据
+              导入笔记
             </li>
             <li class="x-menu-item-holder">
-              <span class="icon-download"></span> 导出数据
+              <span class="icon-download"></span> 导出笔记
             </li>
             <li class="x-menu-item-holder js-x-empty-db">
               <div class="x-menu-button-wrapper">
-                <span class="icon-delete"></span> 清空数据
+                <span class="icon-delete"></span> 清空笔记
               </div>
               <div class="x-confirmation-wrapper">
                 <button>取消</button>
@@ -88,7 +88,7 @@
     </nav>
     <div class="content">
       <ul>
-        <li class="null-content">没有可以显示的内容，你可以<a class="x-note-addBtn" href="javascript:void(0)">添加</a>新的笔记
+        <li class="null-content hide">没有可以显示的内容，你可以<a class="x-note-addBtn" href="javascript:void 0;">添加</a>新的笔记
         </li>
       </ul>
     </div>
@@ -146,7 +146,7 @@
   </template>
   <template id="x-note-board-item-template">
     <li class="x-notes-board-item" data-category="{category}">
-      <img src="{ico}" alt="{category}">
+      <img src="assets/images/icons/{ico}" alt="{category}">
       <span class="x-note-count">{count}</span>
     </li>
   </template>
@@ -160,7 +160,7 @@
   <template id="x-note-item-template">
     <li class="x-content-item">
       <div class="float-left">
-        <img src="assets/images/icons/{ico}" title="安卓设备">
+        <img src="assets/images/icons/{ico}">
       </div>
       <div class="float-right">
         <section class="x-content-container">
@@ -170,18 +170,14 @@
           <p class="x-content">{content}</p>
         </section>
         <div class="x-content-operation-contanier">
-          <a href="javascript:void(0)" title="最后修改日期">
-            <span class="icon-clock"></span> {date}
-          </a>
+          <span title="最后修改日期" class="icon-clock"></span> {date}
           <span>•</span>
-          <a href="javascript:void(0)" title="所属分类">
-            <span class="icon-category"></span> {category}
-          </a>
+          <span title="所属分类" class="icon-category"></span> {category}
           <span>•</span>
-          <a href="javascript:void(0)">
+          <a href="javascript:void 0;">
             <span class="icon-edit"></span> 编辑
           </a>
-          <a href="javascript:void(0)">
+          <a href="javascript:void 0;">
             <span class="icon-delete"></span> 删除
           </a>
         </div>

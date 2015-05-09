@@ -374,7 +374,6 @@ define([
        *         key: String // Filter key
        *         isID: Boolean // Is the filter key id field, default is true
        *         value: String|Number // Filter key value
-       *         isBatch: Boolean // Is get multi records, default is false
        *     },
        *     parse: Function // Parse the original data from object store
        * }
@@ -385,9 +384,22 @@ define([
         var store = this.getObjectStore(filter.target);
 
         if (store) {
-          if (!filter.condition) {
-            var req = store.openCursor();
+          var req;
+
+          if (filter.condition) {
+            if (filter.condition.isID) {
+              req = store.get(filter.condition.value);
+            } else {
+              req = store.index(filter.condition.key).get(filter.condition.value); 
+            }
+
+            req.onsuccess = function(event) {
+              x.util.handleCallback(callback, [[event.target.result]]);
+            };
+          } else {
             var data = [];
+            req = store.openCursor();
+            
             req.onsuccess = function(event) {
               var cursor = event.target.result;
               if (cursor) {
@@ -397,8 +409,6 @@ define([
                 x.util.handleCallback(callback, [data]);
               }
             };
-          } else {
-
           }
         }
       };

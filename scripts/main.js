@@ -29,25 +29,12 @@ define([
       });
 
       db.init(properties.indexedDBConfig, function() {
-        db.add('user', {
-          name: 'Joe',
-          password: 'MyPassword'
-        });
+        // db.add('user', {
+        //   name: 'Joe',
+        //   password: 'MyPassword'
+        // });
         
-        db.get({
-          target: 'note'
-        }, function(data) {
-          data.forEach(function(item) {
-            item.ico = Data.categories.filter(function(el) {
-              return el.value === item.category;
-            })[0].ico;
-            
-            $('.content ul').append(x.template.renderTemplate({
-              templateID: 'x-note-item-template',
-              templateData: item
-            }));
-          });
-        });
+        note.refresh(db);
 
         /**
          * Edit category select
@@ -178,15 +165,21 @@ define([
           if (this.classList.contains('x-show-all-notes')) {
             var dom = this;
             db.get({
-              target: 'category'
+              target: 'note'
             }, function(data) {
-              $('.x-notes-board-items-container').append(x.template.renderTemplate({
-                templateID: 'x-note-board-item-template',
-                templateData: {
-                  ico: 'assets/images/icons/empty.png',
+              var templateData;
+              if (!data.length) {
+                templateData = {
+                  ico: 'empty.png',
                   category: 'empty',
                   count: 0
-                }
+                };
+              } else {
+                templateData = note.formatCategoryData(data);
+              }
+              $('.x-notes-board-items-container').append(x.template.renderTemplate({
+                templateID: 'x-note-board-item-template',
+                templateData: templateData
               }));
             });
           } else {
