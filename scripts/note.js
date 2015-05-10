@@ -27,9 +27,8 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
      * @param {Object} db   database  instance
      * @param {Object} data new note data will be add
      */
-    add: function(db, data) {
+    add: function(db, data, callback) {
       var it = this;
-      
       var date = new Date().toLocaleDateString();
 
       db.add('note', {
@@ -55,22 +54,21 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
               return data;
             }
           }, function(id) {
-            $('li.null-content:not(.hide)').addClass('hide');
-            $('.content ul').append(x.template.renderTemplate({
-              templateID: 'x-note-item-template',
-              templateData: {
-                title: data.title,
-                content: data.content,
-                date: date,
-                category: data.category,
-                ico: it.getCategoryIcon(data.category)
-              }
-            }));
             if (id) {
-              it.close();
-              alert('Note add successfully');
+              $('li.null-content:not(.hide)').addClass('hide');
+              $('.content ul').append(x.template.renderTemplate({
+                templateID: 'x-note-item-template',
+                templateData: {
+                  title: data.title,
+                  content: data.content,
+                  date: date,
+                  category: data.category,
+                  ico: it.getCategoryIcon(data.category)
+                }
+              }));
+              x.util.handleCallback(callback, true);
             } else {
-              alert('Note add error');
+              x.util.handleCallback(callback, false);
             }
           });
         }
@@ -132,6 +130,7 @@ define(['jquery', 'core', 'config/data'], function($, x, Data) {
 
     refresh: function(db) {
       var it = this;
+      $('li.x-content-item').remove();
 
       db.get({
         target: 'note'

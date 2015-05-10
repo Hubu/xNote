@@ -275,7 +275,29 @@ define([
         }
       };
 
-      this.remove = function(objectStoreName, filter, callback) {};
+      this.remove = function(objectStoreName, key, callback) {
+        var it = this;
+
+        var store = this.getObjectStore(objectStoreName, true);
+        if (store) {
+          var req = store.get(key);
+
+          req.onsuccess = function(event) {
+
+            if (event.target.result) {
+              req = it.getObjectStore(objectStoreName, true).delete(key); 
+              req.onsuccess = function(event) {
+                x.util.handleCallback(callback, true);
+              };
+            } else {
+              x.notify('没有找到要删除的数据，请稍候重试', {
+                type: 'error'
+              });
+            }
+
+          };
+        }
+      };
 
       /**
        * update ObjectStore
