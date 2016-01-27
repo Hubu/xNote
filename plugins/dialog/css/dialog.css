@@ -72,10 +72,7 @@
 
     cursor: pointer;
 
-    border: none;
-    border: 1px solid #03A9F4;
-    border-width: 1px 0 0;
-    background: #fff;
+    border: 0;
 
     flex: 1;
 }
@@ -87,8 +84,7 @@
 
 .x-dialog-buttons button:hover
 {
-    color: #fff;
-    background: #03A9F4;
+    color: #03A9F4;
 }
 
 /* Individual modal styles with animations/transitions */

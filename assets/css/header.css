@@ -1,210 +1,205 @@
 header
 {
-    background: #03a9f4;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  border-bottom: 1px solid #03a9f4;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 1100px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, .8);
 }
 header > ul
 {
-    display: flex;
+  display: flex;
 }
 .x-menu-holder
 {
-    line-height: 50px;
+  line-height: 50px;
 
-    height: 50px;
+  height: 50px;
 
-    text-align: center;
+  text-align: center;
 
-    flex: 1;
-}
-.x-menu-holder:not(.x-menu-searchbox-holder):hover
-{
-    background: #0288d1;
-}
-.x-menu-holder a
-{
-    color: #fff;
+  flex: 1;
 }
 .x-menu-holder:hover a
 {
-    color: #000;
+  color: #000;
+  color: #03a9f4;
 }
 .x-menu-holder:first-child
 {
-    flex: 2;
+  flex: 2;
 }
 .x-menu-holder:nth-child(3)
 {
-    flex: 6;
+  flex: 6;
 }
 .x-menu-searchbox-holder
 {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 .x-menu-button-holder
 {
-    position: relative;
+  position: relative;
 
-    margin-left: 5px;
+  margin-left: 5px;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 .x-menu-button-holder:hover .x-menu-item-list-holder
 {
-    visibility: visible;
+  visibility: visible;
 }
 .x-setting-button
 {
-    font-size: 20px;
+  font-size: 20px;
 }
 .search-input
 {
-    line-height: 2.3;
+  line-height: 2.3;
 
-    width: 100%;
-    padding: 2px;
+  width: 100%;
 
-    border: 1px solid #f5f5f5;
-    background: transparent;
-}
-::-webkit-input-placeholder
-{
-    color: #dfdfdf;
+  border: 1px solid #f5f5f5;
+  background: transparent;
 }
 .x-menu-item-list-holder
 {
-    position: absolute;
+  position: absolute;
 
-    visibility: hidden;
+  visibility: hidden;
 
-    width: 100%;
+  width: 100%;
+  
+  background: #fff;
 }
 .x-menu-item-holder
 {
-    line-height: 35px;
+  line-height: 35px;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    width: 100%;
-    height: 35px;
-    margin-top: 2px;
+  width: 100%;
+  height: 35px;
+  margin-top: 2px;
 
-    transition: width .3s;
+  transition: width .3s;
 
-    background: #03a9f4;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 }
 .x-menu-item-holder:hover
 {
-    width: 110%;
+  width: 110%;
 
-    color: #fff;
-    background: #0288d1;
+  color: #fff;
+  background: #03a9f4;
 }
 .x-confirmation-wrapper button
 {
-    float: left;
+  float: left;
 
-    width: 50%;
-    height: 35px;
+  width: 50%;
+  height: 35px;
 
-    transition: .1s;
+  transition: .1s;
 
-    color: #fff;
-    border: none;
-    background: #009688;
+  color: #fff;
+  border: none;
+  background: #009688;
 }
 button.positive
 {
-    background: #ff5722;
+  background: #ff5722;
 }
 .x-confirmation-wrapper button:active
 {
-    transform: scale(.9);
+  transform: scale(.9);
 }
 .x-all-notes-board-container
 {
-    position: absolute;
-    top: 50px;
+  position: absolute;
+  top: 50px;
 
-    visibility: hidden;
+  visibility: hidden;
 
-    width: 100%;
-    margin-top: 10px;
-    padding: 20px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
 
-    transition: .3s ease-out;
-    transform: scale(.5);
+  transition: .3s ease-out;
+  transform: scale(.5);
 
-    opacity: 0;
-    border-top: 2px solid #03a9f4;
-    background: rgba(255, 255, 255, .98);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+  opacity: 0;
+  border-top: 2px solid #03a9f4;
+  background: rgba(255, 255, 255, .98);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 }
 .x-all-notes-board-container.x-show
 {
-    visibility: visible;
+  visibility: visible;
 
-    transform: scale(1);
+  transform: scale(1);
 
-    opacity: 1;
+  opacity: 1;
 }
 .x-notes-board-close
 {
-    font-size: 2em;
+  font-size: 2em;
 
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 
-    display: inline-block;
+  display: inline-block;
 
-    cursor: pointer;
-    transition: .2s;
-    transform: scale(.5);
+  cursor: pointer;
+  transition: .2s;
+  transform: scale(.5);
 }
 .x-notes-board-close:hover
 {
-    transform: scale(1);
+  transform: scale(1);
 
-    color: red;
+  color: red;
 }
 .x-notes-board-items-container
 {
-    display: flex;
+  display: flex;
 
-    flex-flow: row wrap;
-    justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 .x-notes-board-item
 {
-    position: relative;
+  position: relative;
 
-    margin: 5px;
-    padding: 5px;
+  margin: 5px;
+  padding: 5px;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    border-radius: 50%;
+  border-radius: 50%;
 }
 .x-notes-board-item:hover
 {
-    background: rgba(228, 228, 228, .45);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  background: rgba(228, 228, 228, .45);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 }
 .x-note-count
 {
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 
-    width: 25px;
-    height: 25px;
-    padding: 3px;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
 
-    text-align: center;
+  text-align: center;
 
-    color: #fff;
-    border-radius: 50%;
-    background: #03a9f4;
+  color: #fff;
+  border-radius: 50%;
+  background: #03a9f4;
 }

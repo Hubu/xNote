@@ -7,8 +7,6 @@
     display: inline-block;
 
     margin: 1px;
-
-    background: #03A9F4;
 }
 .x-category li label
 {
@@ -18,8 +16,7 @@
 
     padding: 2px 10px;
 
-    color: #fff;
-    border: 2px solid #fff;
+    border: 1px solid #000;
 }
 .x-category-add-region label
 {
@@ -80,7 +77,7 @@
 }
 .x-catetory-selection-trigger:checked ~ label
 {
-    border: 2px solid #0288D1;
+    border: 2px solid #03A9F4;
 }
 .x-catetory-selection-trigger:checked ~ label > span:before
 {
@@ -88,7 +85,8 @@
 }
 .x-category  li:hover
 {
-    background: #0288D1;
+    background: #03A9F4;
+    color: #fff;
 }
 .category-editBtn-container
 {
