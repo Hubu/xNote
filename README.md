@@ -1,4 +1,4 @@
 xNote
 =====
 
-indexedDB based none-backend note app [Try Now](http://biicii.github.io/xNote)
+indexedDB based none-backend note app [Try Now](http://beica1.github.io/xNote)
